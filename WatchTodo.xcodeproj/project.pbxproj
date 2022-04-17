@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABAA00CD280BD689008FC51A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAA00CC280BD689008FC51A /* DetailView.swift */; };
+		ABAA00CF280BF8F4008FC51A /* CompleteTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAA00CE280BF8F4008FC51A /* CompleteTasksView.swift */; };
 		ABEA9E8A280AB16D0098956E /* WatchTodo WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = ABEA9E89280AB16D0098956E /* WatchTodo WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		ABEA9E8F280AB16F0098956E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABEA9E8E280AB16F0098956E /* Assets.xcassets */; };
 		ABEA9E95280AB16F0098956E /* WatchTodo WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ABEA9E94280AB16F0098956E /* WatchTodo WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -61,6 +63,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ABAA00CC280BD689008FC51A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		ABAA00CE280BF8F4008FC51A /* CompleteTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTasksView.swift; sourceTree = "<group>"; };
 		ABEA9E85280AB16D0098956E /* WatchTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABEA9E89280AB16D0098956E /* WatchTodo WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchTodo WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABEA9E8E280AB16F0098956E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				ABEA9E99280AB16F0098956E /* ContentView.swift */,
+				ABAA00CC280BD689008FC51A /* DetailView.swift */,
+				ABAA00CE280BF8F4008FC51A /* CompleteTasksView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -279,7 +285,9 @@
 			files = (
 				ABEA9E9A280AB16F0098956E /* ContentView.swift in Sources */,
 				ABEA9E9C280AB16F0098956E /* WatchTodoApp.swift in Sources */,
+				ABAA00CF280BF8F4008FC51A /* CompleteTasksView.swift in Sources */,
 				ABEA9E9E280AB16F0098956E /* ComplicationController.swift in Sources */,
+				ABAA00CD280BD689008FC51A /* DetailView.swift in Sources */,
 				ABEA9EB5280AB79F0098956E /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

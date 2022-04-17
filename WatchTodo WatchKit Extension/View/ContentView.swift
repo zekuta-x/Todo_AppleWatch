@@ -16,9 +16,40 @@ struct ContentView: View {
     
     // MARK: - FUNCTION
     
-    func save() {
-        dump(notes)
+    func getDocumentDirectory() -> URL {
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return path[0]
     }
+    
+    func save() {
+        //        dump(notes) //クラスのインスタンスがインデント付きで確認可能
+        do{
+            let data = try JSONEncoder().encode(notes)
+            let url = getDocumentDirectory().appendingPathComponent("notes")
+            try data.write(to: url)
+        } catch {
+            print("Saving data has failed!")
+        }
+    }
+    
+    func load(){
+        DispatchQueue.main.async {
+            do{
+                let url = getDocumentDirectory().appendingPathComponent("notes")
+                let data = try Data(contentsOf: url)
+                notes = try JSONDecoder().decode([Note].self, from: data)
+                
+            } catch {
+                
+            }
+        }
+    }
+    
+    func delete(offsets: IndexSet) {
+            notes.remove(atOffsets: offsets)
+            save()
+    }
+    
     
     // MARK: - BODY
     
@@ -44,13 +75,81 @@ struct ContentView: View {
             } //: HSTACK
             Spacer()
             
-            Text("\(notes.count)")
-        } //: VSTACK
-        .navigationTitle("Notes")
+            if notes.count >= 1 {
+                List{
+                    ForEach(0..<notes.count, id: \.self) { i in
+                        NavigationLink(destination: DetailView(note: notes[i], count: notes.count, index: i)){
+                            HStack {
+                                Capsule()
+                                    .frame(width: 4)
+                                    .foregroundColor(.accentColor)
+                                Text(notes[i].text)
+                                    .lineLimit(1)
+                                    .padding(.leading, 5)
+                            }
+                        }
+                    }
+                    //: LOOP
+                    .swipeActions(edge: .leading) {
+                        Button {
+                            print("Task done")
+                        } label: {
+                            Image(systemName: "checkmark.square.fill")
+                        }
+                        .tint(.blue)
+                        .font(.system(size: 45, weight: .semibold))
+                        .imageScale(.large)
+                    }
+                    .swipeActions(edge: .trailing) {
+                        Button() {
+                            print("Task delete")
+                            delete(offsets: <#T##IndexSet#>)
+                        } label: {
+                            Image(systemName: "trash.square.fill")
+                        }
+                        .tint(.red)
+                        .font(.system(size: 25))
+                        .imageScale(.large)
+                    }
+                    
+                    HStack{
+                        //: 遂行したタスクリスト}
+                        Image(systemName:"text.badge.checkmark")
+                            .font(.system(size: 25, weight: .semibold))
+                            .foregroundColor(.accentColor)
+                            .onTapGesture{print("Complate tasks")}
+                        
+                        Spacer()
+                        
+                        //: ゴミ箱行きのタスクリスト
+                        
+                        Image(systemName:"trash")
+                            .font(.system(size: 25, weight: .semibold))
+                            .foregroundColor(.accentColor)
+                            .onTapGesture{ print("Trash tasks")}
+                            .padding(.trailing)
+                        
+                    }
+                    .listRowBackground(Color.clear)
+                }
+            } else {
+                Spacer()
+                Image(systemName:"note.text")
+                    .resizable()
+                    .scaledToFit()
+                    .opacity(0.25)
+                    .padding(25)
+                Spacer()
+            }
+        } //: VSTACK end
+        .navigationTitle("FastTasks")
+        .onAppear(perform: {
+            load()
+        })
     }
 }
 
-    // MARK: - PREVIEW
+// MARK: - PREVIEW
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
