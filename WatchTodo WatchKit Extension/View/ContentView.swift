@@ -102,8 +102,10 @@ struct ContentView: View {
                     }
                     .swipeActions(edge: .trailing) {
                         Button() {
-                            print("Task delete")
-                            delete(offsets: <#T##IndexSet#>)
+                            print(notes)
+//                            delete(offsets: <#T##IndexSet#>)
+//                            notes.remove(at: notes.index)
+//                            save()
                         } label: {
                             Image(systemName: "trash.square.fill")
                         }
